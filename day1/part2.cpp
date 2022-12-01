@@ -45,13 +45,16 @@ int main(int argc, char* argv[]) {
         } catch (std::invalid_argument& e) {
             elfs.push_back(elf(++it));
         }
-
-        std::cout << *i << std::endl;
     }
 
-    auto i = std::max_element(elfs.begin(), elfs.end());
+    std::sort(elfs.begin(), elfs.end(), std::greater<elf>());
 
-    std::cout << "Elf " << i->getId() << " is carrying " << i->getCalories() << " calories." << std::endl;
+    int totaal = 0;
+    for (int i = 0; i < 3; i++) {
+        std::cout << "Elf " << elfs[i].getId() << " is carrying " << elfs[i].getCalories() << " calories." << std::endl;
+        totaal += elfs[i].getCalories();
+    }
+    std::cout << "Total amount of calories carried by the elfs is: " << totaal << std::endl;
 
     std::cout << std::endl << std::endl << std::endl;
 }
